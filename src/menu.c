@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
         switch (opt) {
             case 'h':
-                return 0;
+                break;
             case 'v':
                 verbose = true;
                 break;
