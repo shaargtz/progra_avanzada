@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <getopt.h>
+#include <libgen.h>
 
 int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
@@ -16,7 +18,7 @@ int main(int argc, char *argv[]) {
                 break;
             case 'o':
                 write = true;
-                //filename = optarg;
+                filename = optarg;
                 break;
         }
     }
