@@ -3,8 +3,24 @@
 #include <stdbool.h>
 
 int main(int argc, char *argv[]) {
-    bool menu = true;
-    int choice;
+    bool menu = true, verbose = false, write = false;
+    int choice, opt;
+    char *filename;
+
+    while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
+        switch (opt) {
+            case 'h':
+                return 0;
+            case 'v':
+                verbose = true;
+                break;
+            case 'o':
+                write = true;
+                //filename = optarg;
+                break;
+        }
+    }
+
 
     while (menu) {
         printf("Selecciona una opcion:\n1 Mostrar estudiantes\n2 Hacer una query\n3 Salir\n");
