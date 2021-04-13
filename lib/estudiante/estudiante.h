@@ -9,6 +9,7 @@ typedef struct {
     char *ciudad;
     char *fecha;
     int calificaciones[4];
+    double promedio;
 } Estudiante;
 
 void help();

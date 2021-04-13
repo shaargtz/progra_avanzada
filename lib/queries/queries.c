@@ -53,10 +53,31 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename) {
         if (!arg2) printf("Query invalida");
         else {
             char *arg3 = strtok(query, " ");
-            if (!arg2) {
-
+            if (!arg3) {
+                if (arg2 == "*") muestra(arr, write, filename);
+                else {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        if (arr[i].carrera == arg2) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                }
             } else {
-                
+                int count = 0;
+                for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    if (arr[i].carrera == arg2 && arr[i].ciudad == arg3) {
+                        count++;
+                    }
+                }
+                if (!count) printf("No dio resultados la query");
+                else {
+                    printf("%d alumnos\n", count);
+                    if (write) fprintf(filename, "%d alumnos\n", count);
+                }
             }
         }
     } else if (arg1 == "Nombre_alumnos") {
@@ -64,10 +85,79 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename) {
         if (!arg2) printf("Query invalida");
         else {
             char *arg3 = strtok(query, " ");
-            if (!arg2) {
-
+            if (!arg3) {
+                if (arg2 == "*") muestra(arr, write, filename);
+                else {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        if (arr[i].carrera == arg2) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                }
             } else {
-                
+                if (arg2 == "<") {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        char *ptr;
+                        double calificacion = strtod(arg3, ptr);
+                        if (arr[i].promedio < calificacion) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                } else if (arg2 == ">") {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        char *ptr;
+                        double calificacion = strtod(arg3, ptr);
+                        if (arr[i].promedio > calificacion) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                } else if (arg2 == "==") {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        char *ptr;
+                        double calificacion = strtod(arg3, ptr);
+                        if (arr[i].promedio == calificacion) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                } else if (arg2 == "!=") {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        char *ptr;
+                        double calificacion = strtod(arg3, ptr);
+                        if (arr[i].promedio != calificacion) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                } else {
+                    int count = 0;
+                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                        if (arr[i].carrera == arg2 && arr[i].ciudad == arg3) {
+                            printf("%s\n", arr[i].nombre);
+                            count++;
+                            if (write) fprintf(filename, "%s\n", query, arr[i].nombre);
+                        }
+                    }
+                    if (!count) printf("No dio resultados la query");
+                }
             }
         }
     } else {
