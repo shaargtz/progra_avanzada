@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    arr = leeArchivos(file1, file2);
+    arr = leeArchivos(file1, file2, verbose);
 
 
     while (menu) {
@@ -40,16 +40,16 @@ int main(int argc, char *argv[]) {
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                muestra(arr, write, filename);
+                muestra(arr, write, filename, verbose);
                 break;
             case 2:
-                leeQuery(arr, write, filename);
+                leeQuery(arr, write, filename, verbose);
                 break;
             case 3:
                 menu = false;
                 break;
         }
     }
-    
+
     return 0;
 }
