@@ -14,5 +14,6 @@ typedef struct {
 
 void help();
 void muestra(Estudiante arr[], bool write, char *filename);
+Estudiante* leeArchivos(char* archivo1, char* archivo2);
 
 #endif

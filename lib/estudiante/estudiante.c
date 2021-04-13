@@ -27,3 +27,38 @@ void muestra(Estudiante arr[], bool write, char *filename) {
         }
     }
 }
+
+Estudiante* leeArchivos(char* archivo1, char* archivo2) {
+    FILE *file1, *file2;
+    int numeroEstudiantes = 0, dummy;
+    
+    file1 = fopen(archivo1, "r");
+    if (file1 == NULL) {
+        printf("No se encontro el archivo %s\n", archivo1);
+        exit(1);
+    }
+
+    fscanf(file1, "%*[^\n]");
+    while (fscanf(file1, "%*[^\n]") != EOF) numeroEstudiantes++;
+    fclose(file1);
+
+    Estudiante *output;
+    output = (Estudiante *)malloc(numeroEstudiantes * sizeof(Estudiante));
+
+    file1 = fopen(archivo1, "r");
+    fscanf(file1, "%*[^\n]");
+    int counter = 0;
+    while (fscanf(file1, "%d %s %s %s %s", &output[counter].id, output[counter].nombre, 
+        output[counter].carrera, output[counter].ciudad, output[counter].fecha) != EOF) counter++;
+    fclose(file1);
+
+    file2 = fopen(archivo2, "r");
+    fscanf(file2, "%*[^\n]");
+    counter = 0;
+    while (fscanf(file2, "%d %d %d %d %d", &dummy, 
+        &output[counter].calificaciones[0], &output[counter].calificaciones[1],
+        &output[counter].calificaciones[2], &output[counter].calificaciones[3]) != EOF) counter++;
+    fclose(file2);
+
+    return output;
+}
