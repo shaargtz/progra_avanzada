@@ -1,9 +1,9 @@
-Id_alumno   Nombre_alumno   Carrera Ciudad_origen   Fecha_estimada_graduacion
-123         Abril Sanchez   ITC     Mty             26/05/2022
-456         Genaro Luna     ISD     Saltillo        11/10/2026
-912         Enrique Lopez   LIN     Torreon         26/05/2022
-987         Juan Hernandez  LAF     CDMX            26/05/2022
-431         Ana alvarez     IMT     Guadalajara     01/05/2025
-908         Jose Garza      IIS     Veracruz        26/05/2024
-176         Carolina Sada   IDS     Cancun          11/12/2021
-901         Gabriel Castro  IMD     Merida          26/05/2023
+Id_alumno Nombre_alumno Carrera Ciudad_origen Fecha_estimada_graduacion
+123 Abril Sanchez ITC Mty 26/05/2022
+456 Genaro Luna ISD Saltillo 11/10/2026
+912 Enrique Lopez LIN Torreon 26/05/2022
+987 Juan Hernandez LAF CDMX 26/05/2022
+431 Ana alvarez IMT Guadalajara 01/05/2025
+908 Jose Garza IIS Veracruz 26/05/2024
+176 Carolina Sada IDS Cancun 11/12/2021
+901 Gabriel Castro IMD Merida 26/05/2023
