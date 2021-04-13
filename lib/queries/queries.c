@@ -3,15 +3,6 @@
 #include <string.h>
 #include "../estudiante/estudiante.h"
 
-leeQuery(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
-    char *buffer;
-    size_t bufsize = 32;
-    buffer = (char *)malloc(bufsize * sizeof(char));
-    printf("Escribe tu query:\n");
-    getline(&buffer, &bufsize, stdin);
-    ejecutaQuery(arr, buffer, write, filename, verbose, size);
-}
-
 ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose, int size) {
     if (write) fprintf(filename, "Query: %s\n", query);
     char *arg1 = strtok(query, " ");
@@ -194,4 +185,13 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
         printf("Query invalida");
         if (write) fprintf(filename, "Query invalida\n");
     }
+}
+
+leeQuery(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
+    char *buffer;
+    size_t bufsize = 32;
+    buffer = (char *)malloc(bufsize * sizeof(char));
+    printf("Escribe tu query:\n");
+    getline(&buffer, &bufsize, stdin);
+    ejecutaQuery(arr, buffer, write, filename, verbose, size);
 }
