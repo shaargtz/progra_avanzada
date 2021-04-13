@@ -1,5 +1,6 @@
 #ifndef ESTUDIANTE_H
 #define ESTUDIANTE_H
+#include <stdbool.h>
 
 typedef struct {
     int id;
@@ -11,6 +12,6 @@ typedef struct {
 } Estudiante;
 
 void help();
-void muestra(Estudiante e[]);
+void muestra(Estudiante e[], bool write, char *progname);
 
 #endif

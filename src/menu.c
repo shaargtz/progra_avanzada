@@ -9,11 +9,12 @@
 int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
     int choice, opt;
-    char *filename;
+    char *filename, *progname;
 
     while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
         switch (opt) {
             case 'h':
+                help();
                 break;
             case 'v':
                 verbose = true;
@@ -21,6 +22,7 @@ int main(int argc, char *argv[]) {
             case 'o':
                 write = true;
                 filename = optarg;
+                progname = basename(argv[0]);
                 break;
         }
     }
@@ -31,6 +33,7 @@ int main(int argc, char *argv[]) {
         scanf("%d", &choice);
         switch (choice) {
             case 1:
+                muestra(write, filename, progname);
                 break;
             case 2:
                 break;
