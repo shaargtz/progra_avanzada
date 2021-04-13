@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
     int choice, opt;
     char *filename, *progname;
+    Estudiante *arr;
 
     while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
         switch (opt) {
@@ -33,7 +34,7 @@ int main(int argc, char *argv[]) {
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                muestra(write, filename, progname);
+                muestra(arr, write, filename);
                 break;
             case 2:
                 break;

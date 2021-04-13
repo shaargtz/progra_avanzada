@@ -14,12 +14,12 @@ void help(const char *progname) {
     exit(EXIT_FAILURE);
 }
 
-void muestra(Estudiante e[], bool write, char *progname) {
+void muestra(Estudiante e[], bool write, char *filename) {
     for (int i = 0; i < sizeof(e) / sizeof(e[0]); i++) {
         printf("ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\n", 
                 e[i].id, e[i].nombre, e[i].carrera, e[i].ciudad, e[i].fecha);
         if (write) {
-            fprintf(progname, "ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\n", 
+            fprintf(filename, "ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\n", 
                 e[i].id, e[i].nombre, e[i].carrera, e[i].ciudad, e[i].fecha);
         }
     }
