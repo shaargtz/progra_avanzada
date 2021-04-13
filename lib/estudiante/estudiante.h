@@ -11,6 +11,6 @@ typedef struct {
 } Estudiante;
 
 void help();
-void muestra();
+void muestra(Estudiante e[]);
 
 #endif

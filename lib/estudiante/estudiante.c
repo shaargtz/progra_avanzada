@@ -13,3 +13,10 @@ void help(const char *progname) {
     fprintf(stderr, MENSAJE_AYUDA, progname);
     exit(EXIT_FAILURE);
 }
+
+void muestra(Estudiante e[]) {
+    for (int i = 0; i < sizeof(e) / sizeof(e[0]); i++) {
+        printf("ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\n", 
+                e[i].id, e[i].nombre, e[i].carrera, e[i].ciudad, e[i].fecha);
+    }
+}
