@@ -62,3 +62,17 @@ Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose) {
 
     return output;
 }
+
+int cuentaEstudiantes(char* archivo, bool verbose) {
+    FILE *file;
+    file = fopen(archivo, "r");
+    if (file == NULL) {
+        printf("No se encontro el archivo %s\n", archivo);
+        exit(1);
+    }
+
+    int counter = 0;
+    while(fscanf(archivo, "%*[^\n]%*c") != EOF) counter++;
+
+    return counter;
+}
