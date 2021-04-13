@@ -21,7 +21,7 @@ void muestra(Estudiante arr[], bool write, char *filename) {
             arr[i].id, arr[i].nombre, arr[i].carrera, arr[i].ciudad, arr[i].fecha,
             arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
         if (write) {
-            fprintf(filename, "ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
+            fprintf(filename, "Todos los estudiantes\nID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
                 "Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n",
                 arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
         }

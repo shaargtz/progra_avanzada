@@ -23,8 +23,8 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename) {
                     printf("Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
                         arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
                     if (write) {
-                        fprintf(filename, "Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
-                            arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
+                        fprintf(filename, "%s\nMateria A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
+                            query, arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
                     }
                     return;
                 }
