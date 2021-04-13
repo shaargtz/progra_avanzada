@@ -4,10 +4,11 @@
 
 typedef struct {
     int id;
-    char *nombre;
-    char *carrera;
-    char *ciudad;
-    char *fecha;
+    char nombre[16];
+    char apellido[16];
+    char carrera[3];
+    char ciudad[16];
+    char fecha[10];
     int calificaciones[4];
     double promedio;
 } Estudiante;
