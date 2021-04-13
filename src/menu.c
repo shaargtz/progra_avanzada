@@ -12,27 +12,27 @@ int main(int argc, char *argv[]) {
     char *filename, *progname, *file1, *file2;
     Estudiante *arr;
 
-    while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
-        switch (opt) {
-            case 'h':
-                help();
-                break;
-            case 'v':
-                file1 = argv[1];
-                file2 = argv[2];
-                verbose = true;
-                break;
-            case 'o':
-                file1 = argv[1];
-                file2 = argv[2];
-                write = true;
-                filename = optarg;
-                progname = basename(argv[0]);
-                break;
-        }
-    }
+    // while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
+    //     switch (opt) {
+    //         case 'h':
+    //             help();
+    //             break;
+    //         case 'v':
+    //             file1 = argv[1];
+    //             file2 = argv[2];
+    //             verbose = true;
+    //             break;
+    //         case 'o':
+    //             file1 = argv[1];
+    //             file2 = argv[2];
+    //             write = true;
+    //             filename = optarg;
+    //             progname = basename(argv[0]);
+    //             break;
+    //     }
+    // }
 
-    arr = leeArchivos(file1, file2, verbose);
+    arr = leeArchivos(argv[1], argv[2], verbose);
 
 
     while (menu) {
