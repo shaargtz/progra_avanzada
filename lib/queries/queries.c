@@ -19,7 +19,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename) {
         if (!arg2) printf("Query invalida");
         else {
             for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
-                if (arr[i].id == arg2) {
+                if (arr[i].id == atoi(arg2)) {
                     printf("Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
                         arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
                     if (write) {
@@ -28,14 +28,25 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename) {
                     }
                     return;
                 }
-                printf("Query invalida");
             }
+            printf("No dio resultados la query");
         }
     } else if (arg1 == "Fecha_estimada_graduacion") {
         char *arg2 = strtok(query, " ");
         if (!arg2) printf("Query invalida");
         else {
-            
+            for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                if (arr[i].id == atoi(arg2)) {
+                    printf("Fecha de graduacion: %s\n", 
+                        arr[i].fecha);
+                    if (write) {
+                        fprintf(filename, "%s\nFecha de graduacion: %s\n", 
+                            query, arr[i].fecha);
+                    }
+                    return;
+                }
+            }
+            printf("No dio resultados la query");
         }
     } else if (arg1 == "Numero_alumnos") {
         char *arg2 = strtok(query, " ");
