@@ -9,7 +9,7 @@
 int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
     int choice, opt;
-    char *filename, *progname;
+    char *filename, *progname, *file1, *file2;
     Estudiante *arr;
 
     while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
@@ -18,15 +18,21 @@ int main(int argc, char *argv[]) {
                 help();
                 break;
             case 'v':
+                file1 = argv[1];
+                file2 = argv[2];
                 verbose = true;
                 break;
             case 'o':
+                file1 = argv[1];
+                file2 = argv[2];
                 write = true;
                 filename = optarg;
                 progname = basename(argv[0]);
                 break;
         }
     }
+
+    arr = leeArchivos(file1, file2);
 
 
     while (menu) {
@@ -37,11 +43,13 @@ int main(int argc, char *argv[]) {
                 muestra(arr, write, filename);
                 break;
             case 2:
+                leeQuery(arr, write, filename);
                 break;
             case 3:
                 menu = false;
                 break;
         }
     }
+    
     return 0;
 }
