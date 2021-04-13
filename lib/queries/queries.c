@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../estudiante/estudiante.h"
 
-ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose, int size) {
+void ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose, int size) {
     if (write) fprintf(filename, "Query: %s\n", query);
     char *arg1 = strtok(query, " ");
     if (arg1 == "Kardex") {
@@ -187,7 +187,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
     }
 }
 
-leeQuery(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
+void leeQuery(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
     char *buffer;
     size_t bufsize = 32;
     buffer = (char *)malloc(bufsize * sizeof(char));
