@@ -14,13 +14,13 @@ void help(const char *progname) {
     exit(EXIT_FAILURE);
 }
 
-void muestra(Estudiante e[], bool write, char *filename) {
-    for (int i = 0; i < sizeof(e) / sizeof(e[0]); i++) {
+void muestra(Estudiante arr[], bool write, char *filename) {
+    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
         printf("ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\n", 
-                e[i].id, e[i].nombre, e[i].carrera, e[i].ciudad, e[i].fecha);
+                arr[i].id, arr[i].nombre, arr[i].carrera, arr[i].ciudad, arr[i].fecha);
         if (write) {
             fprintf(filename, "ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\n", 
-                e[i].id, e[i].nombre, e[i].carrera, e[i].ciudad, e[i].fecha);
+                arr[i].id, arr[i].nombre, arr[i].carrera, arr[i].ciudad, arr[i].fecha);
         }
     }
 }

@@ -12,6 +12,6 @@ typedef struct {
 } Estudiante;
 
 void help();
-void muestra(Estudiante e[], bool write, char *filename);
+void muestra(Estudiante arr[], bool write, char *filename);
 
 #endif

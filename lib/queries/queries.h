@@ -1,8 +1,7 @@
 #ifndef QUERIES_H
 #define QUERIES_H
-#include "../estudiante/estudiante.h"
 
-void leeQuery();
-void ejecutaQuery(char *query);
+void leeQuery(Estudiante arr[]);
+void ejecutaQuery(Estudiante arr[], char *query);
 
 #endif

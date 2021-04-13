@@ -1,17 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "../estudiante/estudiante.h"
 
-leeQuery() {
+leeQuery(Estudiante arr[]) {
     char *buffer;
     size_t bufsize = 32;
     buffer = (char *)malloc(bufsize * sizeof(char));
     printf("Escribe tu query:\n");
     getline(&buffer, &bufsize, stdin);
-    ejecutaQuery(buffer);
+    ejecutaQuery(arr, buffer);
 }
 
-ejecutaQuery(char *query) {
+ejecutaQuery(Estudiante arr[], char *query) {
     char *arg1 = strtok(query, " ");
     if (arg1 == "Kardex") {
         char *arg2 = strtok(query, " ");
