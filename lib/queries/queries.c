@@ -3,16 +3,16 @@
 #include <string.h>
 #include "../estudiante/estudiante.h"
 
-leeQuery(Estudiante arr[], bool write, char *filename, bool verbose) {
+leeQuery(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
     char *buffer;
     size_t bufsize = 32;
     buffer = (char *)malloc(bufsize * sizeof(char));
     printf("Escribe tu query:\n");
     getline(&buffer, &bufsize, stdin);
-    ejecutaQuery(arr, buffer, write, filename, verbose);
+    ejecutaQuery(arr, buffer, write, filename, verbose, size);
 }
 
-ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose) {
+ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose, int size) {
     if (write) fprintf(filename, "Query: %s\n", query);
     char *arg1 = strtok(query, " ");
     if (arg1 == "Kardex") {
@@ -21,7 +21,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
             printf("Query invalida\n");
             if (write) fprintf(filename, "Query invalida\n");
         } else {
-            for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+            for (int i = 0; i < size; i++) {
                 if (arr[i].id == atoi(arg2)) {
                     printf("Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
                         arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
@@ -41,7 +41,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
             printf("Query invalida\n");
             if (write) fprintf(filename, "Query invalida\n");
         } else {
-            for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+            for (int i = 0; i < size; i++) {
                 if (arr[i].id == atoi(arg2)) {
                     printf("%s\n", arr[i].fecha);
                     if (write) fprintf(filename, "%s\n", arr[i].fecha);
@@ -60,11 +60,11 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
             char *arg3 = strtok(query, " ");
             if (!arg3) {
                 if (arg2 == "*") {
-                    printf("%d alumnos\n", sizeof(arr) / sizeof(arr[0]));
-                    if (write) fprintf(filename, "%d alumnos\n", sizeof(arr) / sizeof(arr[0]));
+                    printf("%d alumnos\n", size);
+                    if (write) fprintf(filename, "%d alumnos\n", size);
                 } else {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         if (arr[i].carrera == arg2) count++;
                     }
                     if (!count) printf("No dio resultados la query\n");
@@ -75,7 +75,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
                 }
             } else {
                 int count = 0;
-                for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                for (int i = 0; i < size; i++) {
                     if (arr[i].carrera == arg2 && arr[i].ciudad == arg3) count++;
                 }
                 if (!count) {
@@ -95,13 +95,13 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
         } else {
             char *arg3 = strtok(query, " ");
             if (!arg3) {
-                if (arg2 == "*") for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                if (arg2 == "*") for (int i = 0; i < size; i++) {
                     printf("%s\n", arr[i].nombre);
                     if (write) fprintf(filename, "%s\n", arr[i].nombre);
                 }
                 else {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         if (arr[i].carrera == arg2) {
                             printf("%s\n", arr[i].nombre);
                             count++;
@@ -116,7 +116,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
             } else {
                 if (arg2 == "<") {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio < calificacion) {
@@ -131,7 +131,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
                     }
                 } else if (arg2 == ">") {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio > calificacion) {
@@ -146,7 +146,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
                     }
                 } else if (arg2 == "==") {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio == calificacion) {
@@ -161,7 +161,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
                     }
                 } else if (arg2 == "!=") {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio != calificacion) {
@@ -176,7 +176,7 @@ ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool ver
                     }
                 } else {
                     int count = 0;
-                    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+                    for (int i = 0; i < size; i++) {
                         if (arr[i].carrera == arg2 && arr[i].ciudad == arg3) {
                             printf("%s\n", arr[i].nombre);
                             count++;

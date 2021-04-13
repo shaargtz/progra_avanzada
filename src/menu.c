@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
-    int choice, opt;
+    int choice, opt, numEstudiantes;
     char *filename, *progname, *file1, *file2;
     Estudiante *arr;
 
@@ -32,18 +32,18 @@ int main(int argc, char *argv[]) {
     //     }
     // }
 
-    arr = leeArchivos(argv[1], argv[2], verbose);
-
+    numEstudiantes = cuentaEstudiantes(argv[1], verbose);
+    arr = leeArchivos(argv[1], argv[2], verbose, numEstudiantes);
 
     while (menu) {
         printf("Selecciona una opcion:\n1 Mostrar estudiantes\n2 Hacer una query\n3 Salir\n");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                muestra(arr, write, filename, verbose);
+                muestra(arr, write, filename, verbose, numEstudiantes);
                 break;
             case 2:
-                leeQuery(arr, write, filename, verbose);
+                leeQuery(arr, write, filename, verbose, numEstudiantes);
                 break;
             case 3:
                 menu = false;

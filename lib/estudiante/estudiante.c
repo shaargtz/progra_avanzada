@@ -14,8 +14,8 @@ void help(const char *progname) {
     exit(EXIT_FAILURE);
 }
 
-void muestra(Estudiante arr[], bool write, char *filename, bool verbose) {
-    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
+void muestra(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
+    for (int i = 0; i < size; i++) {
         printf("ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
             "Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
             arr[i].id, arr[i].nombre, arr[i].carrera, arr[i].ciudad, arr[i].fecha,
@@ -28,32 +28,28 @@ void muestra(Estudiante arr[], bool write, char *filename, bool verbose) {
     }
 }
 
-Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose) {
+Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size) {
     FILE *file1, *file2;
-    int numeroEstudiantes = 0, dummy;
-    
+    int dummy;
+
     file1 = fopen(archivo1, "r");
     if (file1 == NULL) {
         printf("No se encontro el archivo %s\n", archivo1);
         exit(1);
     }
 
-    fscanf(file1, "%*[^\n]");
-    while (fscanf(file1, "%*[^\n]") != EOF) numeroEstudiantes++;
-    fclose(file1);
-
     Estudiante *output;
-    output = (Estudiante *)malloc(numeroEstudiantes * sizeof(Estudiante));
+    output = (Estudiante *)malloc(size * sizeof(Estudiante));
 
     file1 = fopen(archivo1, "r");
-    fscanf(file1, "%*[^\n]");
+    fscanf(file1, "%*[^\n]%*c");
     int counter = 0;
-    while (fscanf(file1, "%d %s %s %s %s", &output[counter].id, output[counter].nombre, 
+    while (fscanf(file1, "%d %s %s %s %s %s", &output[counter].id, output[counter].nombre, output[counter].apellido,
         output[counter].carrera, output[counter].ciudad, output[counter].fecha) != EOF) counter++;
     fclose(file1);
 
     file2 = fopen(archivo2, "r");
-    fscanf(file2, "%*[^\n]");
+    fscanf(file2, "%*[^\n]%*c");
     counter = 0;
     while (fscanf(file2, "%d %d %d %d %d", &dummy, 
         &output[counter].calificaciones[0], &output[counter].calificaciones[1],
@@ -71,7 +67,7 @@ int cuentaEstudiantes(char* archivo, bool verbose) {
         exit(1);
     }
 
-    int counter = 0;
+    int counter = -1;
     while(fscanf(archivo, "%*[^\n]%*c") != EOF) counter++;
 
     return counter;

@@ -14,8 +14,8 @@ typedef struct {
 } Estudiante;
 
 void help();
-void muestra(Estudiante arr[], bool write, char *filename, bool verbose);
-Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose);
+void muestra(Estudiante arr[], bool write, char *filename, bool verbose, int size);
+Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size);
 int cuentaEstudiantes(char* archivo, bool verbose);
 
 #endif
