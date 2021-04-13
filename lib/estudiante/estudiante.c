@@ -14,7 +14,7 @@ void help(const char *progname) {
     exit(EXIT_FAILURE);
 }
 
-void muestra(Estudiante arr[], bool write, char *filename) {
+void muestra(Estudiante arr[], bool write, char *filename, bool verbose) {
     for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
         printf("ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
             "Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
@@ -28,7 +28,7 @@ void muestra(Estudiante arr[], bool write, char *filename) {
     }
 }
 
-Estudiante* leeArchivos(char* archivo1, char* archivo2) {
+Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose) {
     FILE *file1, *file2;
     int numeroEstudiantes = 0, dummy;
     

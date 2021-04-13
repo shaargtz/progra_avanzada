@@ -3,16 +3,16 @@
 #include <string.h>
 #include "../estudiante/estudiante.h"
 
-leeQuery(Estudiante arr[], bool write, char *filename) {
+leeQuery(Estudiante arr[], bool write, char *filename, bool verbose) {
     char *buffer;
     size_t bufsize = 32;
     buffer = (char *)malloc(bufsize * sizeof(char));
     printf("Escribe tu query:\n");
     getline(&buffer, &bufsize, stdin);
-    ejecutaQuery(arr, buffer, write, filename);
+    ejecutaQuery(arr, buffer, write, filename, verbose);
 }
 
-ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename) {
+ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose) {
     if (write) fprintf(filename, "Query: %s\n", query);
     char *arg1 = strtok(query, " ");
     if (arg1 == "Kardex") {
