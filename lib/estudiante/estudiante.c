@@ -33,7 +33,6 @@ void muestra(Estudiante arr[], bool write, FILE *out, bool verbose, int size) {
 
 Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size) {
     FILE *file1, *file2;
-    int dummy;
 
     file1 = fopen(archivo1, "r");
     if (file1 == NULL) {
@@ -55,12 +54,21 @@ Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size) 
 
     if (verbose) printf("Leyendo calificaciones...\n");
 
+    int id, calif1, calif2, calif3, calif4;
     file2 = fopen(archivo2, "r");
     fscanf(file2, "%*[^\n]%*c");
-    counter = 0;
-    while (fscanf(file2, "%d %d %d %d %d", &dummy, 
-        &output[counter].calificaciones[0], &output[counter].calificaciones[1],
-        &output[counter].calificaciones[2], &output[counter].calificaciones[3]) != EOF) counter++;
+    while (fscanf(file2, "%d %d %d %d %d", &id, &calif1, &calif2, &calif3, &calif4) != EOF) {
+        for (int i = 0; i < size; i++) {
+            if (output[i].id == id) {
+                output[i].calificaciones[0] = calif1;
+                output[i].calificaciones[1] = calif2;
+                output[i].calificaciones[2] = calif3;
+                output[i].calificaciones[3] = calif4;
+                output[i].promedio = 1.0 * (calif1 + calif2 + calif3 + calif4) / 4.0;
+                break;
+            }
+        }
+    }
     fclose(file2);
 
     return output;
