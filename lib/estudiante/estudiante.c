@@ -84,7 +84,7 @@ int cuentaEstudiantes(char* archivo, bool verbose) {
     }
 
     int counter = -1;
-    while(fscanf(archivo, "%*[^\n]%*c") != EOF) counter++;
+    while(fscanf(file, "%*s %*s %*s %*s %*s %*s") != EOF) counter++;
 
     return counter;
 }
