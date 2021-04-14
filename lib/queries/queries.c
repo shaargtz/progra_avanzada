@@ -11,7 +11,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
     }
     char *arg1 = strtok(query, " ");
     if (arg1 == "Kardex") {
-        char *arg2 = strtok(query, " ");
+        char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
             if (write) fprintf(filename, "Query invalida\n");
@@ -31,7 +31,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             if (write) fprintf(filename, "No dio resultados la query\n");
         }
     } else if (arg1 == "Fecha_estimada_graduacion") {
-        char *arg2 = strtok(query, " ");
+        char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
             if (write) fprintf(filename, "Query invalida\n");
@@ -47,12 +47,12 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             if (write) fprintf(filename, "No dio resultados la query\n");
         }
     } else if (arg1 == "Numero_alumnos") {
-        char *arg2 = strtok(query, " ");
+        char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
             if (write) fprintf(filename, "Query invalida\n");
         } else {
-            char *arg3 = strtok(query, " ");
+            char *arg3 = strtok(NULL, " ");
             if (!arg3) {
                 if (arg2 == "*") {
                     printf("%d alumnos\n", size);
@@ -83,12 +83,12 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             }
         }
     } else if (arg1 == "Nombre_alumnos") {
-        char *arg2 = strtok(query, " ");
+        char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
             if (write) fprintf(filename, "Query invalida\n");
         } else {
-            char *arg3 = strtok(query, " ");
+            char *arg3 = strtok(NULL, " ");
             if (!arg3) {
                 if (arg2 == "*") for (int i = 0; i < size; i++) {
                     printf("%s\n", arr[i].nombre);
