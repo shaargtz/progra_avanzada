@@ -192,10 +192,11 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
 }
 
 void leeQuery(Estudiante arr[], bool write, FILE *out, bool verbose, int size) {
-    char *buffer;
-    size_t bufsize = 32;
-    buffer = (char *)malloc(bufsize * sizeof(char));
-    printf("Escribe tu query:\n");
-    getline(&buffer, &bufsize, stdin);
-    ejecutaQuery(arr, buffer, write, out, verbose, size);
+    scanf("%*c");
+    printf("Escribe tu query: ");
+    char line[32];
+    fgets(line, 32, stdin);
+    line[strlen(line) - 1] = '\0';
+    if (verbose) printf("Leyendo query...\n");
+    ejecutaQuery(arr, line, write, out, verbose, size);
 }
