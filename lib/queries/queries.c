@@ -91,16 +91,16 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             char *arg3 = strtok(NULL, " ");
             if (!arg3) {
                 if (!strcmp(arg2, "*")) for (int i = 0; i < size; i++) {
-                    printf("%s\n", arr[i].nombre);
-                    if (write) fprintf(out, "%s\n", arr[i].nombre);
+                    printf("%s %s\n", arr[i].nombre, arr[i].apellido);
+                    if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                 }
                 else {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
                         if (!strcmp(arr[i].carrera, arg2)) {
-                            printf("%s\n", arr[i].nombre);
+                            printf("%s %s\n", arr[i].nombre, arr[i].apellido);
                             count++;
-                            if (write) fprintf(out, "%s\n", arr[i].nombre);
+                            if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                         }
                     }
                     if (!count) {
@@ -115,9 +115,9 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio < calificacion) {
-                            printf("%s\n", arr[i].nombre);
+                            printf("%s %s\n", arr[i].nombre, arr[i].apellido);
                             count++;
-                            if (write) fprintf(out, "%s\n", arr[i].nombre);
+                            if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                         }
                     }
                     if (!count) {
@@ -130,9 +130,9 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio > calificacion) {
-                            printf("%s\n", arr[i].nombre);
+                            printf("%s %s\n", arr[i].nombre, arr[i].apellido);
                             count++;
-                            if (write) fprintf(out, "%s\n", arr[i].nombre);
+                            if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                         }
                     }
                     if (!count) {
@@ -145,9 +145,9 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio == calificacion) {
-                            printf("%s\n", arr[i].nombre);
+                            printf("%s %s\n", arr[i].nombre, arr[i].apellido);
                             count++;
-                            if (write) fprintf(out, "%s\n", arr[i].nombre);
+                            if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                         }
                     }
                     if (!count) {
@@ -160,9 +160,9 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         char *ptr;
                         double calificacion = strtod(arg3, ptr);
                         if (arr[i].promedio != calificacion) {
-                            printf("%s\n", arr[i].nombre);
+                            printf("%s %s\n", arr[i].nombre, arr[i].apellido);
                             count++;
-                            if (write) fprintf(out, "%s\n", arr[i].nombre);
+                            if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                         }
                     }
                     if (!count) {
@@ -173,9 +173,9 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                     int count = 0;
                     for (int i = 0; i < size; i++) {
                         if (!strcmp(arr[i].carrera, arg2) && !strcmp(arr[i].ciudad, arg3)) {
-                            printf("%s\n", arr[i].nombre);
+                            printf("%s %s\n", arr[i].nombre, arr[i].apellido);
                             count++;
-                            if (write) fprintf(out, "%s\n", arr[i].nombre);
+                            if (write) fprintf(out, "%s %s\n", arr[i].nombre, arr[i].apellido);
                         }
                     }
                     if (!count) {
@@ -186,7 +186,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             }
         }
     } else {
-        printf("Query invalida");
+        printf("Query invalida\n");
         if (write) fprintf(out, "Query invalida\n");
     }
 }
