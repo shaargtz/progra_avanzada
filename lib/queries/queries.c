@@ -3,8 +3,12 @@
 #include <string.h>
 #include "../estudiante/estudiante.h"
 
-void ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, bool verbose, int size) {
-    if (write) fprintf(filename, "Query: %s\n", query);
+void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool verbose, int size) {
+    if (verbose) printf("Ejecutando query...\n");
+    if (write) {
+        if (verbose) printf("Escribiendo al archivo...\n");
+        fprintf(out, "Query: %s\n", query);
+    }
     char *arg1 = strtok(query, " ");
     if (arg1 == "Kardex") {
         char *arg2 = strtok(query, " ");
@@ -187,11 +191,11 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, char *filename, boo
     }
 }
 
-void leeQuery(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
+void leeQuery(Estudiante arr[], bool write, FILE *out, bool verbose, int size) {
     char *buffer;
     size_t bufsize = 32;
     buffer = (char *)malloc(bufsize * sizeof(char));
     printf("Escribe tu query:\n");
     getline(&buffer, &bufsize, stdin);
-    ejecutaQuery(arr, buffer, write, filename, verbose, size);
+    ejecutaQuery(arr, buffer, write, out, verbose, size);
 }

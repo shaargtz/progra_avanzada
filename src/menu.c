@@ -9,8 +9,9 @@
 int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
     int choice, opt, numEstudiantes;
-    char *filename, *progname, *file1, *file2;
+    char *filename, *progname;
     Estudiante *arr;
+    FILE *out;
 
     if (argc < 3) {
         printf("Faltan argumentos para ejecutar el programa\n");
@@ -33,6 +34,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    if (write) out = fopen(filename, "w");
+
     numEstudiantes = cuentaEstudiantes(argv[1], verbose);
     arr = leeArchivos(argv[1], argv[2], verbose, numEstudiantes);
 
@@ -41,16 +44,20 @@ int main(int argc, char *argv[]) {
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                muestra(arr, write, filename, verbose, numEstudiantes);
+                muestra(arr, write, out, verbose, numEstudiantes);
                 break;
             case 2:
-                leeQuery(arr, write, filename, verbose, numEstudiantes);
+                leeQuery(arr, write, out, verbose, numEstudiantes);
                 break;
             case 3:
                 menu = false;
                 break;
         }
     }
+
+    if (write) fclose(out);
+
+    if (verbose) printf("Programa finalizado correctamente...\n");
 
     return 0;
 }

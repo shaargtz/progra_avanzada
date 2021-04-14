@@ -1,6 +1,7 @@
 #ifndef ESTUDIANTE_H
 #define ESTUDIANTE_H
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef struct {
     int id;
@@ -14,7 +15,7 @@ typedef struct {
 } Estudiante;
 
 void help();
-void muestra(Estudiante arr[], bool write, char *filename, bool verbose, int size);
+void muestra(Estudiante arr[], bool write, FILE *out, bool verbose, int size);
 Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size);
 int cuentaEstudiantes(char* archivo, bool verbose);
 

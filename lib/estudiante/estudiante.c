@@ -14,15 +14,18 @@ void help(const char *progname) {
     exit(EXIT_FAILURE);
 }
 
-void muestra(Estudiante arr[], bool write, char *filename, bool verbose, int size) {
+void muestra(Estudiante arr[], bool write, FILE *out, bool verbose, int size) {
+    if (write) fprintf(out, "Todos los estudiantes\n");
     for (int i = 0; i < size; i++) {
         printf("ID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
             "Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n", 
             arr[i].id, arr[i].nombre, arr[i].carrera, arr[i].ciudad, arr[i].fecha,
             arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
         if (write) {
-            fprintf(filename, "Todos los estudiantes\nID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
+            if (verbose) printf("Escribiendo al archivo...\n");
+            fprintf(out, "Todos los estudiantes\nID: %i\tNombre: %s\tCarrera: %s\tCiudad: %s\tFecha de graduacion: %s\t"\
                 "Materia A: %i\tMateria B: %i\tMateria C: %i\tMateria D: %i\n",
+                arr[i].id, arr[i].nombre, arr[i].carrera, arr[i].ciudad, arr[i].fecha,
                 arr[i].calificaciones[0], arr[i].calificaciones[1], arr[i].calificaciones[2], arr[i].calificaciones[3]);
         }
     }
@@ -41,12 +44,16 @@ Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size) 
     Estudiante *output;
     output = (Estudiante *)malloc(size * sizeof(Estudiante));
 
+    if (verbose) printf("Leyendo datos de alumnos...\n");
+
     file1 = fopen(archivo1, "r");
     fscanf(file1, "%*[^\n]%*c");
     int counter = 0;
     while (fscanf(file1, "%d %s %s %s %s %s", &output[counter].id, output[counter].nombre, output[counter].apellido,
         output[counter].carrera, output[counter].ciudad, output[counter].fecha) != EOF) counter++;
     fclose(file1);
+
+    if (verbose) printf("Leyendo calificaciones...\n");
 
     file2 = fopen(archivo2, "r");
     fscanf(file2, "%*[^\n]%*c");
@@ -60,6 +67,7 @@ Estudiante* leeArchivos(char* archivo1, char* archivo2, bool verbose, int size) 
 }
 
 int cuentaEstudiantes(char* archivo, bool verbose) {
+    if (verbose) printf("Contando numero de alumnos...\n");
     FILE *file;
     file = fopen(archivo, "r");
     if (file == NULL) {
