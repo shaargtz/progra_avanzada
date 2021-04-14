@@ -12,25 +12,26 @@ int main(int argc, char *argv[]) {
     char *filename, *progname, *file1, *file2;
     Estudiante *arr;
 
-    // while ((opt  = getopt(argc, argv, "hvo:")) != EOF) {
-    //     switch (opt) {
-    //         case 'h':
-    //             help();
-    //             break;
-    //         case 'v':
-    //             file1 = argv[1];
-    //             file2 = argv[2];
-    //             verbose = true;
-    //             break;
-    //         case 'o':
-    //             file1 = argv[1];
-    //             file2 = argv[2];
-    //             write = true;
-    //             filename = optarg;
-    //             progname = basename(argv[0]);
-    //             break;
-    //     }
-    // }
+    if (argc < 3) {
+        printf("Faltan argumentos para ejecutar el programa\n");
+        exit(1);
+    }
+
+    while ((opt = getopt(argc - 2, argv + 2, "ho:v")) != EOF) {
+        switch (opt) {
+            case 'h':
+                help();
+                break;
+            case 'v':
+                verbose = true;
+                break;
+            case 'o':
+                write = true;
+                filename = optarg;
+                progname = basename(argv[0]);
+                break;
+        }
+    }
 
     numEstudiantes = cuentaEstudiantes(argv[1], verbose);
     arr = leeArchivos(argv[1], argv[2], verbose, numEstudiantes);
