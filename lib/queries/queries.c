@@ -10,7 +10,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
         fprintf(out, "Query: %s\n", query);
     }
     char *arg1 = strtok(query, " ");
-    if (arg1 == "Kardex") {
+    if (!strcmp(arg1, "Kardex")) {
         char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
@@ -30,7 +30,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             printf("No dio resultados la query\n");
             if (write) fprintf(filename, "No dio resultados la query\n");
         }
-    } else if (arg1 == "Fecha_estimada_graduacion") {
+    } else if (!strcmp(arg1, "Fecha_estimada_graduacion")) {
         char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
@@ -46,7 +46,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             printf("No dio resultados la query\n");
             if (write) fprintf(filename, "No dio resultados la query\n");
         }
-    } else if (arg1 == "Numero_alumnos") {
+    } else if (!strcmp(arg1, "Numero_alumnos")) {
         char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
@@ -54,13 +54,13 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
         } else {
             char *arg3 = strtok(NULL, " ");
             if (!arg3) {
-                if (arg2 == "*") {
+                if (!strcmp(arg2, "*")) {
                     printf("%d alumnos\n", size);
                     if (write) fprintf(filename, "%d alumnos\n", size);
                 } else {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
-                        if (arr[i].carrera == arg2) count++;
+                        if (!strcmp(arr[i].carrera, arg2)) count++;
                     }
                     if (!count) printf("No dio resultados la query\n");
                     else {
@@ -71,7 +71,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
             } else {
                 int count = 0;
                 for (int i = 0; i < size; i++) {
-                    if (arr[i].carrera == arg2 && arr[i].ciudad == arg3) count++;
+                    if (!strcmp(arr[i].carrera, arg2) && !strcmp(arr[i].ciudad, arg3)) count++;
                 }
                 if (!count) {
                     printf("No dio resultados la query\n");
@@ -82,7 +82,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                 }
             }
         }
-    } else if (arg1 == "Nombre_alumnos") {
+    } else if (!strcmp(arg1, "Nombre_alumnos")) {
         char *arg2 = strtok(NULL, " ");
         if (!arg2) {
             printf("Query invalida\n");
@@ -90,14 +90,14 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
         } else {
             char *arg3 = strtok(NULL, " ");
             if (!arg3) {
-                if (arg2 == "*") for (int i = 0; i < size; i++) {
+                if (!strcmp(arg2, "*")) for (int i = 0; i < size; i++) {
                     printf("%s\n", arr[i].nombre);
                     if (write) fprintf(filename, "%s\n", arr[i].nombre);
                 }
                 else {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
-                        if (arr[i].carrera == arg2) {
+                        if (!strcmp(arr[i].carrera, arg2)) {
                             printf("%s\n", arr[i].nombre);
                             count++;
                             if (write) fprintf(filename, "%s\n", arr[i].nombre);
@@ -109,7 +109,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                     }
                 }
             } else {
-                if (arg2 == "<") {
+                if (!strcmp(arg2, "<")) {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
                         char *ptr;
@@ -124,7 +124,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         printf("No dio resultados la query\n");
                         if (write) fprintf(filename, "No dio resultados la query\n");
                     }
-                } else if (arg2 == ">") {
+                } else if (!strcmp(arg2, ">")) {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
                         char *ptr;
@@ -139,7 +139,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         printf("No dio resultados la query\n");
                         if (write) fprintf(filename, "No dio resultados la query\n");
                     }
-                } else if (arg2 == "==") {
+                } else if (!strcmp(arg2, "==")) {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
                         char *ptr;
@@ -154,7 +154,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                         printf("No dio resultados la query\n");
                         if (write) fprintf(filename, "No dio resultados la query\n");
                     }
-                } else if (arg2 == "!=") {
+                } else if (!strcmp(arg2, "!=")) {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
                         char *ptr;
@@ -172,7 +172,7 @@ void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool ver
                 } else {
                     int count = 0;
                     for (int i = 0; i < size; i++) {
-                        if (arr[i].carrera == arg2 && arr[i].ciudad == arg3) {
+                        if (!strcmp(arr[i].carrera, arg2) && !strcmp(arr[i].ciudad, arg3)) {
                             printf("%s\n", arr[i].nombre);
                             count++;
                             if (write) fprintf(filename, "%s\n", arr[i].nombre);
