@@ -1,6 +1,6 @@
-#include "estudiante.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "estudiante.h"
 
 #define MENSAJE_AYUDA   "%s file1 file2 [-h|-v|-o <filename>]\n"\
                         "Permite al usuario hacer consultas sobre los datos de los estudiantes"\

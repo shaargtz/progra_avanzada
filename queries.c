@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../estudiante/estudiante.h"
+#include "queries.h"
 
 void ejecutaQuery(Estudiante arr[], char *query, bool write, FILE *out, bool verbose, int size) {
     if (verbose) printf("Ejecutando query...\n");

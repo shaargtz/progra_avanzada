@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include <getopt.h>
 #include <libgen.h>
-#include "../lib/estudiante/estudiante.h"
-#include "../lib/queries/queries.h"
+#include "estudiante.h"
+#include "queries.h"
 
 int main(int argc, char *argv[]) {
     bool menu = true, verbose = false, write = false;
